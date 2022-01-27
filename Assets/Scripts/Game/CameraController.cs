@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
     public float zOffset = -10;
 
     [Range(1,10)]
-    public float smoothingFactor = 1;
+    public float smoothingFactor = 6;
 
     private void FixedUpdate()
     {

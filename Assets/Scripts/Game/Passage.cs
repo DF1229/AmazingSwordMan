@@ -13,7 +13,7 @@ public class Passage : MonoBehaviour
         Vector3 newPos = new Vector3(connection.position.x, connection.position.y, other.transform.position.z);
         other.transform.position = newPos;
 
-        currentRoom.Disable();
-        nextRoom.Enable();
+        currentRoom.gameObject.SetActive(false);
+        nextRoom.gameObject.SetActive(true);
     }
 }
