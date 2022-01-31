@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Blob : Enemy
+public class Slime : Enemy
 {
+    private void OnEnable()
+    {
 
+    }
 }

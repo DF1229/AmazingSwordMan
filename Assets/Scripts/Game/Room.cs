@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    public GameObject[] enemies;
+    public Enemy[] enemies;
+
+    private void OnEnable()
+    {
+        Reset();
+    }
 
     // Prepare room for new visit
     public void Reset()
     {
-        
+        Debug.Log("TODO: Room reset");
     }
 }
