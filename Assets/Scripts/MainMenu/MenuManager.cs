@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
+    public GameObject mainMenu;
     public GameObject howToMenu;
 
     public void PlayGame()
@@ -13,9 +14,14 @@ public class MenuManager : MonoBehaviour
     public void ToggleHowToMenu()
     {
         if (howToMenu.activeSelf)
+        {
+            mainMenu.SetActive(false);
             howToMenu.SetActive(true);
-        else
+        } else
+        {
             howToMenu.SetActive(false);
+            mainMenu.SetActive(true);
+        }
     }
 
     public void QuitGame()
