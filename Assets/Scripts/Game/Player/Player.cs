@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
     {
         playerControls.Base.Move.performed += TransferDirection;
         playerControls.Base.Move.canceled += TransferDirection;
+
+        playerControls.Base.Pause.performed += GameManager.Instance.TogglePause;
     }
 
     // Update is called once per frame
