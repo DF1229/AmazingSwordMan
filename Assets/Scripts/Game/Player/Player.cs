@@ -20,6 +20,9 @@ public class Player : MonoBehaviour
     private void OnDisable()
     {
         playerControls.Base.Move.performed -= TransferDirection;
+        playerControls.Base.Move.canceled -= TransferDirection;
+        playerControls.Base.Pause.performed -= GameManager.Instance.TogglePause;
+
         playerControls.Base.Disable();
     }
 
