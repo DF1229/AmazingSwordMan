@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
         _instance = this;
     }
 
+
+
+    // <menus>
     public void TogglePause(InputAction.CallbackContext ctx)
     {
         if (paused)
@@ -79,4 +82,5 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
+    // </menus>
 }

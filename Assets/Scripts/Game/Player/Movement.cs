@@ -42,7 +42,7 @@ public class Movement : MonoBehaviour
     private void FixedUpdate() // fixedupdate instead of update to compensate for FPS variations
     {
         Vector2 position = rigidbody.position;
-        Vector2 translation = direction * speed * speedMultiplier * Time.fixedDeltaTime;
+        Vector2 translation = speed * speedMultiplier * Time.fixedDeltaTime * direction;
         rigidbody.MovePosition(position + translation);
     }
 

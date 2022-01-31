@@ -6,6 +6,11 @@ public class Player : MonoBehaviour
     private PlayerControls playerControls;
     public Movement movement { get; private set; }
 
+    public HealthBar healthBar;
+    public float healthPoints = 100;
+    public float attackRange = 4;
+    public float attackDamage = 25;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -35,14 +40,14 @@ public class Player : MonoBehaviour
         playerControls.Base.Pause.performed += GameManager.Instance.TogglePause;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void TransferDirection(InputAction.CallbackContext ctx)
     {
         movement.SetDirection(ctx.ReadValue<Vector2>());
+    }
+
+    public void TakeDamage(float dmg)
+    {
+        this.healthPoints -= dmg;
+        healthBar.SetHealth(healthPoints);
     }
 }

@@ -6,12 +6,14 @@ using Pathfinding;
 [RequireComponent(typeof(AIDestinationSetter))]
 public class Enemy : MonoBehaviour
 {
+    public AIPath aiPath;
     public LayerMask playerLayer;
     public Player target;
-    [Range(1,5)]
-    public float attackRange = 2;
+    public Vector3 defaultPosition;
 
-    public AIPath aiPath;
+    public float healthPoints = 100;
+    public float attackRange = 2;
+    public float attackDamage = 10;
 
     private void Awake()
     {
@@ -37,5 +39,17 @@ public class Enemy : MonoBehaviour
         Vector2 origin = new Vector2(this.transform.position.x, this.transform.position.y);
         Vector2 direction = new Vector2(Vector3.forward.x, Vector3.forward.y);
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, attackRange, playerLayer);
+        
+        Player player = hit.transform.GetComponent<Player>();
+
+        if (player is Player)
+            player.TakeDamage(attackDamage);
+    }
+
+    public void Reset()
+    {
+        healthPoints = 100;
+        this.transform.position = defaultPosition;
+        this.gameObject.SetActive(false);
     }
 }
