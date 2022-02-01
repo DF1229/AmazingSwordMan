@@ -40,11 +40,12 @@ public class Enemy : MonoBehaviour
     private void Attack()
     {
         Vector2 origin = new Vector2(this.transform.position.x, this.transform.position.y);
-        Vector2 direction = new Vector2(target.transform.position.x, target.transform.position.y);
+        Vector2 direction = target.transform.position - this.transform.position;
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, attackRange, playerLayer);
-        
+
         Player player = hit.transform.GetComponent<Player>();
-        player.TakeDamage(attackDamage);
+        if (player)
+            player.TakeDamage(attackDamage);
     }
 
     public void Reset()
