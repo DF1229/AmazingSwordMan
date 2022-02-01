@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,11 +11,6 @@ public class Room : MonoBehaviour
 
     public bool finished = false;
     public GameObject particles;
-
-    private void Awake()
-    {
-
-    }
 
     private void OnEnable()
     {
@@ -38,6 +32,16 @@ public class Room : MonoBehaviour
     {
         this.finished = true;
         particles.SetActive(true);
+    }
+
+    public List<Enemy> GetActiveEnemies()
+    {
+        List<Enemy> activeEnemies = new List<Enemy>();
+
+        foreach (Wave wave in waves)
+            activeEnemies.AddRange(wave.GetActiveEnemies());
+
+        return activeEnemies;
     }
 
     // Prepare room for new visit

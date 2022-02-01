@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public Vector3 defaultPosition;
 
     public float healthPoints = 100f;
-    public float attackRange = 5f;
+    public float attackRange = 2f;
     public float attackDamage = 5f;
     public float attackCooldown = 2f;
 
@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     {
         // Calculate distance to target, and attack if in range
         float dtt = Vector3.Distance(target.transform.position, this.transform.position);
-        if (dtt < attackRange && attackCooldown <= 0f)
+        if (dtt <= attackRange && attackCooldown <= 0f)
             Attack();
 
         attackCooldown -= Time.fixedDeltaTime;
@@ -43,14 +43,27 @@ public class Enemy : MonoBehaviour
         Vector2 direction = target.transform.position - this.transform.position;
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, attackRange, playerLayer);
 
+        if (!hit)
+            return;
+
         Player player = hit.transform.GetComponent<Player>();
         if (player)
             player.TakeDamage(attackDamage);
+
+        attackCooldown = 2f;
+    }
+
+    public void TakeDamage(float dmg)
+    {
+        this.healthPoints -= dmg;
+        if (healthPoints <= 0f)
+            Reset();
     }
 
     public void Reset()
     {
         healthPoints = 100;
+        attackCooldown = 2f;
         this.transform.position = defaultPosition;
         this.gameObject.SetActive(false);
     }

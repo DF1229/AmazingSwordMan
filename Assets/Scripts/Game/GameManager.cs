@@ -69,7 +69,8 @@ public class GameManager : MonoBehaviour
         {
             pauseMenu.SetActive(false);
             quitMenu.SetActive(true);
-        } else if (deathMenu.activeSelf)
+        } 
+        if (deathMenu.activeSelf)
         {
             deathMenu.SetActive(false);
             pauseMenu.SetActive(true);
@@ -82,6 +83,7 @@ public class GameManager : MonoBehaviour
 
     public void ShowDeathMenu()
     {
+        TogglePause();
         if (!deathMenu.activeSelf)
             deathMenu.SetActive(true);
     }
@@ -89,6 +91,7 @@ public class GameManager : MonoBehaviour
     public void ToMainMenu()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        Resources.UnloadUnusedAssets();
     }
 
     public void QuitGame()

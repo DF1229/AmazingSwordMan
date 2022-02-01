@@ -15,5 +15,9 @@ public class Passage : MonoBehaviour
 
         currentRoom.gameObject.SetActive(false);
         nextRoom.gameObject.SetActive(true);
+
+        Player player = other.GetComponent<Player>();
+        if (player)
+            player.currRoom = nextRoom;
     }
 }
