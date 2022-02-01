@@ -11,9 +11,10 @@ public class Enemy : MonoBehaviour
     public Player target;
     public Vector3 defaultPosition;
 
-    public float healthPoints = 100;
-    public float attackRange = 2;
-    public float attackDamage = 10;
+    public float healthPoints = 100f;
+    public float attackRange = 5f;
+    public float attackDamage = 5f;
+    public float attackCooldown = 2f;
 
     private void Awake()
     {
@@ -24,26 +25,26 @@ public class Enemy : MonoBehaviour
     {
         // Calculate distance to target, and attack if in range
         float dtt = Vector3.Distance(target.transform.position, this.transform.position);
-        if (dtt < attackRange)
+        if (dtt < attackRange && attackCooldown <= 0f)
             Attack();
+
+        attackCooldown -= Time.fixedDeltaTime;
 
         // Monitor direction of travel, and flip sprite as needed
         if (aiPath.desiredVelocity.x >= 0.01f)
-            this.transform.localScale = new Vector3(-1f, 1f, 1f);
-        else
             this.transform.localScale = new Vector3(1f, 1f, 1f);
+        else
+            this.transform.localScale = new Vector3(-1f, 1f, 1f);
     }
 
     private void Attack()
     {
         Vector2 origin = new Vector2(this.transform.position.x, this.transform.position.y);
-        Vector2 direction = new Vector2(Vector3.forward.x, Vector3.forward.y);
+        Vector2 direction = new Vector2(target.transform.position.x, target.transform.position.y);
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, attackRange, playerLayer);
         
         Player player = hit.transform.GetComponent<Player>();
-
-        if (player is Player)
-            player.TakeDamage(attackDamage);
+        player.TakeDamage(attackDamage);
     }
 
     public void Reset()

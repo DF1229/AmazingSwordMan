@@ -1,3 +1,4 @@
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class GameManager : MonoBehaviour
     // Set in unity editor
     public GameObject pauseMenu;
     public GameObject howToMenu;
+    public GameObject deathMenu;
     public GameObject quitMenu;
 
     // Set in script
@@ -20,36 +22,28 @@ public class GameManager : MonoBehaviour
         _instance = this;
     }
 
-
-
-    // <menus>
-    public void TogglePause(InputAction.CallbackContext ctx)
+    public void TogglePause(InputAction.CallbackContext ctx = new InputAction.CallbackContext())
     {
-        if (paused)
+       if (paused)
         {
-            pauseMenu.SetActive(false);
-            Time.timeScale = 1f;
             paused = false;
-        } else {
-            pauseMenu.SetActive(true);
-            Time.timeScale = 0f;
+            Time.timeScale = 1f;
+            TogglePauseMenu();
+        } else
+        {
             paused = true;
+            Time.timeScale = 0f;
+            TogglePauseMenu();
         }
     }
 
-    public void TogglePause()
+    // <menus>
+    private void TogglePauseMenu()
     {
         if (paused)
-        {
-            pauseMenu.SetActive(false);
-            Time.timeScale = 1f;
-            paused = false;
-        } else
-        {
+            pauseMenu.SetActive(false); 
+        else
             pauseMenu.SetActive(true);
-            Time.timeScale = 0f;
-            paused = true;
-        }
     }
 
     public void ToggleHowToMenu()
@@ -71,11 +65,30 @@ public class GameManager : MonoBehaviour
         {
             quitMenu.SetActive(false);
             pauseMenu.SetActive(true);
-        } else
+        } else if (!quitMenu.activeSelf)
         {
             pauseMenu.SetActive(false);
             quitMenu.SetActive(true);
+        } else if (deathMenu.activeSelf)
+        {
+            deathMenu.SetActive(false);
+            pauseMenu.SetActive(true);
+        } else if (!deathMenu.activeSelf)
+        {
+            pauseMenu.SetActive(false);
+            deathMenu.SetActive(true);
         }
+    }
+
+    public void ShowDeathMenu()
+    {
+        if (!deathMenu.activeSelf)
+            deathMenu.SetActive(true);
+    }
+
+    public void ToMainMenu()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
     public void QuitGame()

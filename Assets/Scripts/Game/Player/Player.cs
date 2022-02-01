@@ -49,5 +49,11 @@ public class Player : MonoBehaviour
     {
         this.healthPoints -= dmg;
         healthBar.SetHealth(healthPoints);
+
+        if (healthPoints <= 0f)
+        {
+            GameManager.Instance.TogglePause();
+            GameManager.Instance.ShowDeathMenu();
+        }
     }
 }
