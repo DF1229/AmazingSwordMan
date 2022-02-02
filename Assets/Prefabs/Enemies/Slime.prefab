@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1743629697126472898}
   - component: {fileID: 1743629697126472902}
   - component: {fileID: 1743629697126472897}
-  - component: {fileID: 7723969531623442070}
+  - component: {fileID: 5096662430841823522}
   - component: {fileID: 1743629697126472899}
   m_Layer: 7
   m_Name: Slime
@@ -195,8 +195,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &7723969531623442070
-BoxCollider2D:
+--- !u!58 &5096662430841823522
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -208,19 +208,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.13}
-    newSize: {x: 0.16, y: 0.13}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: -0.002609253}
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.13}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
 --- !u!114 &1743629697126472899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,11 +223,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a95f6c5abf5bede4fac271aef5adc071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aiPath: {fileID: 0}
+  aiPath: {fileID: 1743629697126472908}
+  target: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  target: {fileID: 0}
   defaultPosition: {x: 0, y: 0, z: 0}
   healthPoints: 100
   attackRange: 2

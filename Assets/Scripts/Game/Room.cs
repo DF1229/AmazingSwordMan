@@ -19,10 +19,10 @@ public class Room : MonoBehaviour
 
     public void nextWave()
     {
-        waves[currWave].Activate();
         currWave++;
+        waves[currWave].Activate();
 
-        if (currWave > waves.Length)
+        if (currWave >= waves.Length)
         {
             Finished();
         }

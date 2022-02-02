@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
             target = FindClosestEnemy(enemies);
 
         if (!target)
-            currRoom.nextWave();
+            return;
 
         float dtt = Vector3.Distance(target.transform.position, this.transform.position);
         if (dtt <= attackRange)
@@ -95,6 +95,7 @@ public class Player : MonoBehaviour
             Vector2 origin = new Vector2(this.transform.position.x, this.transform.position.y);
             Vector2 direction = target.transform.position - this.transform.position;
             RaycastHit2D hit = Physics2D.Raycast(origin, direction, attackRange, enemyLayer);
+            Debug.DrawRay(transform.position, direction, Color.green, 2.0f);
 
             if (!hit)
                 return;

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
@@ -7,8 +8,9 @@ using Pathfinding;
 public class Enemy : MonoBehaviour
 {
     public AIPath aiPath;
-    public LayerMask playerLayer;
     public Player target;
+    public Room currRoom;
+    public LayerMask playerLayer;
     public Vector3 defaultPosition;
 
     public float healthPoints = 100f;
@@ -57,7 +59,14 @@ public class Enemy : MonoBehaviour
     {
         this.healthPoints -= dmg;
         if (healthPoints <= 0f)
+        {
             Reset();
+
+            List<Enemy> activeEnemies = currRoom.GetActiveEnemies();
+            if (activeEnemies.Count == 0)
+                currRoom.nextWave();
+        }
+
     }
 
     public void Reset()
