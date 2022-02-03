@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     private PlayerControls playerControls;
     public Movement movement { get; private set; }
+    public Animator animator { get; private set; }
 
     public HealthBar healthBar;
     public TextMeshProUGUI scoreText;
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
     {
         playerControls = new PlayerControls();
         movement = this.GetComponent<Movement>();
+        animator = this.GetComponent<Animator>();
     }
 
     private void OnDestroy()
@@ -52,6 +54,15 @@ public class Player : MonoBehaviour
 
     private void TransferDirection(InputAction.CallbackContext ctx)
     {
+        if ((ctx.started || ctx.performed) && !animator.GetBool("run"))
+            animator.SetBool("run", true);
+        else if (ctx.canceled && animator.GetBool("run"))
+            animator.SetBool("run", false);
+        else
+            Debug.LogError("No valid state: " + ctx.phase);
+
+        Debug.Log(animator.GetBool("run"));
+
         movement.SetDirection(ctx.ReadValue<Vector2>());
     }
 
@@ -74,8 +85,17 @@ public class Player : MonoBehaviour
         return eClosest;
     }
 
+    private void ToggleAttackAnim()
+    {
+        animator.SetBool("attack", !animator.GetBool("attack"));
+    }
+
     public void Attack(InputAction.CallbackContext ctx)
     {
+        ToggleAttackAnim();
+        Invoke("ToggleAttackAnim", 0.15f);
+
+
         if (!currRoom.hasEnemies || currRoom.finished || attackCooldown > 0f)
             return;
 
@@ -103,14 +123,16 @@ public class Player : MonoBehaviour
 
             Enemy enemy = hit.transform.GetComponent<Enemy>();
             if (enemy)
-                enemy.TakeDamage(this, attackDamage);
+                enemy.TakeDamage(attackDamage);
         }
+        
     }
 
     public void TakeDamage(float dmg)
     {
         this.healthPoints -= dmg;
         healthBar.SetHealth(healthPoints);
+        animator.SetFloat("health", healthPoints);
 
         if (healthPoints <= 0f)
             GameManager.Instance.ShowDeathMenu();

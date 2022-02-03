@@ -65,7 +65,7 @@ MonoBehaviour:
   traversableTags: -1
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
-    value: 1
+    value: 0
 --- !u!114 &1743629697126472908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
-  constrainInsideGraph: 0
+  constrainInsideGraph: 1
 --- !u!114 &1743629697126472898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,10 +225,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aiPath: {fileID: 1743629697126472908}
   target: {fileID: 0}
+  currRoom: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
   defaultPosition: {x: 0, y: 0, z: 0}
+  pointsWorth: 0
   healthPoints: 100
   attackRange: 2
   attackDamage: 5

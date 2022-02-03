@@ -1,10 +1,11 @@
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class Movement : MonoBehaviour
 {
     public new Rigidbody2D rigidbody { get; private set; }
+    public Animator animator { get; private set; }
     public Vector3 startingPosition { get; private set; }
     public Vector2 initialDirection = new Vector2(0, 0);
     public Vector2 direction { get; private set; }
@@ -13,7 +14,9 @@ public class Movement : MonoBehaviour
 
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody = this.GetComponent<Rigidbody2D>();
+        animator = this.GetComponent<Animator>();
+
         startingPosition = transform.position;
     }
 
@@ -43,6 +46,7 @@ public class Movement : MonoBehaviour
     {
         Vector2 position = rigidbody.position;
         Vector2 translation = speed * speedMultiplier * Time.fixedDeltaTime * direction;
+
         rigidbody.MovePosition(position + translation);
     }
 

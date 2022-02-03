@@ -8,10 +8,12 @@ using Pathfinding;
 public class Enemy : MonoBehaviour
 {
     public AIPath aiPath;
-    public Player target;
+    public Player player;
     public Room currRoom;
     public LayerMask playerLayer;
     public Vector3 defaultPosition;
+
+    
 
     public int pointsWorth;
     public float healthPoints;
@@ -26,8 +28,10 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
+
         // Calculate distance to target, and attack if in range
-        float dtt = Vector3.Distance(target.transform.position, this.transform.position);
+        float dtt = Vector3.Distance(player.transform.position, this.transform.position);
         if (dtt <= attackRange && attackCooldown <= 0f)
             Attack();
 
@@ -43,7 +47,7 @@ public class Enemy : MonoBehaviour
     private void Attack()
     {
         Vector2 origin = new Vector2(this.transform.position.x, this.transform.position.y);
-        Vector2 direction = target.transform.position - this.transform.position;
+        Vector2 direction = this.player.transform.position - this.transform.position;
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, attackRange, playerLayer);
 
         if (!hit)
@@ -56,7 +60,7 @@ public class Enemy : MonoBehaviour
         attackCooldown = 2f;
     }
 
-    public void TakeDamage(Player player, float dmg)
+    public void TakeDamage(float dmg)
     {
         this.healthPoints -= dmg;
         if (healthPoints <= 0f)
