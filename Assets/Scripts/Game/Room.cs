@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Room : MonoBehaviour
 {
@@ -17,21 +18,34 @@ public class Room : MonoBehaviour
         Reset();
     }
 
+    private void OnDisable()
+    {
+        Reset();
+    }
+
     public void nextWave()
     {
-        currWave++;
-        waves[currWave].Activate();
 
-        if (currWave >= waves.Length)
+        try
         {
-            Finished();
+            waves[currWave].Activate();
+            currWave++;
+        }
+        catch (IndexOutOfRangeException error)
+        {
+            Debug.LogError(error.ToString());
+            if (!infiniteWaves)
+                Finished();
+            else
+                Reset();
         }
     }
 
     private void Finished()
     {
         this.finished = true;
-        particles.SetActive(true);
+        if (!particles.activeSelf) 
+            particles.SetActive(true);
     }
 
     public List<Enemy> GetActiveEnemies()
@@ -45,23 +59,17 @@ public class Room : MonoBehaviour
     }
 
     // Prepare room for new visit
-    public void Reset(bool force = false)
+    public void Reset()
     {
-        if (!force)
-        {
-            if (infiniteWaves)
-                Reset(true);
+        if (!hasEnemies)
+            return;
 
-            if (!hasEnemies)
-                return;
-        } else
-        {
-            currWave = 0;
+        currWave = 0;
+        finished = false;
 
-            foreach (Wave wave in waves)
-            {
-                wave.Reset();
-            }
-        }
+        foreach (Wave wave in waves)
+            wave.Reset();
+
+        nextWave();
     }
 }

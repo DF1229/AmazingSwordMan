@@ -13,10 +13,11 @@ public class Enemy : MonoBehaviour
     public LayerMask playerLayer;
     public Vector3 defaultPosition;
 
-    public float healthPoints = 100f;
-    public float attackRange = 2f;
-    public float attackDamage = 5f;
-    public float attackCooldown = 2f;
+    public int pointsWorth;
+    public float healthPoints;
+    public float attackRange;
+    public float attackDamage;
+    public float attackCooldown;
 
     private void Awake()
     {
@@ -55,11 +56,13 @@ public class Enemy : MonoBehaviour
         attackCooldown = 2f;
     }
 
-    public void TakeDamage(float dmg)
+    public void TakeDamage(Player player, float dmg)
     {
         this.healthPoints -= dmg;
         if (healthPoints <= 0f)
         {
+            player.AddScore(pointsWorth);
+
             Reset();
 
             List<Enemy> activeEnemies = currRoom.GetActiveEnemies();
@@ -73,7 +76,7 @@ public class Enemy : MonoBehaviour
     {
         healthPoints = 100;
         attackCooldown = 2f;
-        this.transform.position = defaultPosition;
+        this.transform.localPosition = defaultPosition;
         this.gameObject.SetActive(false);
     }
 }

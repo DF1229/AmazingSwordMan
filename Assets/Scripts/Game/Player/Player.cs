@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     public HealthBar healthBar;
     public TextMeshProUGUI scoreText;
+    [HideInInspector] public int score = 0;
 
     public LayerMask enemyLayer;
     public float healthPoints = 100f;
@@ -102,7 +103,7 @@ public class Player : MonoBehaviour
 
             Enemy enemy = hit.transform.GetComponent<Enemy>();
             if (enemy)
-                enemy.TakeDamage(attackDamage);
+                enemy.TakeDamage(this, attackDamage);
         }
     }
 
@@ -113,5 +114,11 @@ public class Player : MonoBehaviour
 
         if (healthPoints <= 0f)
             GameManager.Instance.ShowDeathMenu();
+    }
+
+    public void AddScore(int input)
+    {
+        score += input;
+        scoreText.text = score.ToString();
     }
 }
