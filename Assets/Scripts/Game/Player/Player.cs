@@ -58,8 +58,6 @@ public class Player : MonoBehaviour
             animator.SetBool("run", true);
         else if (ctx.canceled && animator.GetBool("run"))
             animator.SetBool("run", false);
-        else
-            Debug.LogError("No valid state: " + ctx.phase);
 
         Debug.Log(animator.GetBool("run"));
 

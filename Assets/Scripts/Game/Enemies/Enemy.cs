@@ -13,7 +13,6 @@ public class Enemy : MonoBehaviour
     public LayerMask playerLayer;
     public Vector3 defaultPosition;
 
-    
 
     public int pointsWorth;
     public float healthPoints;
@@ -21,15 +20,16 @@ public class Enemy : MonoBehaviour
     public float attackDamage;
     public float attackCooldown;
 
+    private Animator animator;
+
     private void Awake()
     {
         aiPath = this.GetComponent<AIPath>();
+        animator = this.GetComponent<Animator>();
     }
 
     private void FixedUpdate()
     {
-        
-
         // Calculate distance to target, and attack if in range
         float dtt = Vector3.Distance(player.transform.position, this.transform.position);
         if (dtt <= attackRange && attackCooldown <= 0f)
@@ -39,13 +39,20 @@ public class Enemy : MonoBehaviour
 
         // Monitor direction of travel, and flip sprite as needed
         if (aiPath.desiredVelocity.x >= 0.01f)
+        {
             this.transform.localScale = new Vector3(1f, 1f, 1f);
+            animator.SetInteger("AnimState", 1);
+        }
         else
+        {
             this.transform.localScale = new Vector3(-1f, 1f, 1f);
+            animator.SetInteger("AnimState", 0);
+        }
     }
 
     private void Attack()
     {
+        animator.SetTrigger("Attack");
         Vector2 origin = new Vector2(this.transform.position.x, this.transform.position.y);
         Vector2 direction = this.player.transform.position - this.transform.position;
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, attackRange, playerLayer);
@@ -65,6 +72,7 @@ public class Enemy : MonoBehaviour
         this.healthPoints -= dmg;
         if (healthPoints <= 0f)
         {
+            animator.SetTrigger("Death");
             player.AddScore(pointsWorth);
 
             Reset();
@@ -72,6 +80,9 @@ public class Enemy : MonoBehaviour
             List<Enemy> activeEnemies = currRoom.GetActiveEnemies();
             if (activeEnemies.Count == 0)
                 currRoom.nextWave();
+        } else if (healthPoints >= 1)
+        {
+            animator.SetTrigger("Hurt");
         }
 
     }
