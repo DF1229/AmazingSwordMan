@@ -54,12 +54,23 @@ public class Player : MonoBehaviour
 
     private void TransferDirection(InputAction.CallbackContext ctx)
     {
-        if ((ctx.started || ctx.performed) && !animator.GetBool("run"))
-            animator.SetBool("run", true);
-        else if (ctx.canceled && animator.GetBool("run"))
-            animator.SetBool("run", false);
+        if (ctx.performed)
+            animator.SetInteger("AnimState", 1);
+        else if (ctx.canceled)
+            animator.SetInteger("AnimState", 0);
 
-        Debug.Log(animator.GetBool("run"));
+        if (ctx.phase == InputActionPhase.Performed)
+        {
+            Vector3 absoluteScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            Vector3 inverseScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            Vector2 ctxValue = ctx.ReadValue<Vector2>();
+            
+            if (ctxValue.x >= 0.1f)
+                transform.localScale = inverseScale;
+            else
+                transform.localScale = absoluteScale;
+        }
+
 
         movement.SetDirection(ctx.ReadValue<Vector2>());
     }
@@ -83,19 +94,12 @@ public class Player : MonoBehaviour
         return eClosest;
     }
 
-    private void ToggleAttackAnim()
-    {
-        animator.SetBool("attack", !animator.GetBool("attack"));
-    }
-
     public void Attack(InputAction.CallbackContext ctx)
     {
-        ToggleAttackAnim();
-        Invoke("ToggleAttackAnim", 0.15f);
-
-
         if (!currRoom.hasEnemies || currRoom.finished || attackCooldown > 0f)
             return;
+
+        animator.SetTrigger("Attack");
 
         List<Enemy> enemies = currRoom.GetActiveEnemies();
         Enemy target = null;
@@ -123,17 +127,18 @@ public class Player : MonoBehaviour
             if (enemy)
                 enemy.TakeDamage(attackDamage);
         }
-        
     }
 
     public void TakeDamage(float dmg)
     {
         this.healthPoints -= dmg;
         healthBar.SetHealth(healthPoints);
-        animator.SetFloat("health", healthPoints);
 
         if (healthPoints <= 0f)
-            GameManager.Instance.ShowDeathMenu();
+        {
+            animator.SetTrigger("Death");
+            Invoke(nameof(GameManager.Instance.ShowDeathMenu), 2f);
+        }
     }
 
     public void AddScore(int input)

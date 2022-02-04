@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
     public float attackCooldown;
 
     private Animator animator;
+    private float previousXPosition = 0f;
+    private float xDirection = 0f;
 
     private void Awake()
     {
@@ -28,6 +30,7 @@ public class Enemy : MonoBehaviour
         animator = this.GetComponent<Animator>();
     }
 
+    // Called first, handles physics
     private void FixedUpdate()
     {
         // Calculate distance to target, and attack if in range
@@ -35,19 +38,12 @@ public class Enemy : MonoBehaviour
         if (dtt <= attackRange && attackCooldown <= 0f)
             Attack();
 
-        attackCooldown -= Time.fixedDeltaTime;
-
-        // Monitor direction of travel, and flip sprite as needed
-        if (aiPath.desiredVelocity.x >= 0.01f)
-        {
-            this.transform.localScale = new Vector3(1f, 1f, 1f);
+        if (aiPath.desiredVelocity != Vector3.zero)
             animator.SetInteger("AnimState", 1);
-        }
         else
-        {
-            this.transform.localScale = new Vector3(-1f, 1f, 1f);
             animator.SetInteger("AnimState", 0);
-        }
+
+        attackCooldown -= Time.fixedDeltaTime;
     }
 
     private void Attack()

@@ -31,9 +31,8 @@ public class Room : MonoBehaviour
             waves[currWave].Activate();
             currWave++;
         }
-        catch (IndexOutOfRangeException error)
+        catch (IndexOutOfRangeException)
         {
-            Debug.LogError(error.ToString());
             if (!infiniteWaves)
                 Finished();
             else

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public new Rigidbody2D rigidbody { get; private set; }
-    public Animator animator { get; private set; }
     public Vector3 startingPosition { get; private set; }
     public Vector2 initialDirection = new Vector2(0, 0);
     public Vector2 direction { get; private set; }
@@ -15,7 +14,6 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         rigidbody = this.GetComponent<Rigidbody2D>();
-        animator = this.GetComponent<Animator>();
 
         startingPosition = transform.position;
     }
@@ -32,13 +30,13 @@ public class Movement : MonoBehaviour
 
         this.direction = direction;
 
-        if (direction.x >= 0.01f)
-        {
-            this.transform.localScale = new Vector3(-1f, 1f, 1f);
-        } else if (direction.x <= 0.01f)
-        {
-            this.transform.localScale = new Vector3(1f, 1f, 1f);
-        }
+        //if (direction.x >= 0.01f)
+        //{
+        //    this.transform.localScale = new Vector3(-1f, 1f, 1f);
+        //} else if (direction.x <= 0.01f)
+        //{
+        //    this.transform.localScale = new Vector3(1f, 1f, 1f);
+        //}
     }
 
 
