@@ -25,6 +25,9 @@ public class Room : MonoBehaviour
 
     public void nextWave()
     {
+        if (!hasEnemies)
+            return;
+
         try
         {
             waves[currWave].Activate();
@@ -42,7 +45,7 @@ public class Room : MonoBehaviour
     private void Finished()
     {
         this.finished = true;
-        if (!particles.activeSelf) 
+        if (!particles.activeSelf)
             particles.SetActive(true);
     }
 
