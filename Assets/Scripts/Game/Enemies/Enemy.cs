@@ -74,9 +74,9 @@ public class Enemy : MonoBehaviour
 
             Reset();
 
-            List<Enemy> activeEnemies = currRoom.GetActiveEnemies();
-            Debug.LogWarning("Enemies found: " + activeEnemies.Count);
-            if (activeEnemies.Count == 0)
+            //List<Enemy> activeEnemies = currRoom.GetActiveEnemies();
+            //if (activeEnemies.Count == 0)
+            if (!GameManager.Instance.ActiveEnemies())
                 currRoom.nextWave();
         } else if (healthPoints >= 1)
         {

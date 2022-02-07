@@ -61,6 +61,15 @@ public class GameManager : MonoBehaviour
         player.Reset();
     }
 
+    public bool ActiveEnemies()
+    {
+        Enemy enemy = (Enemy) FindObjectOfType(typeof(Enemy));
+        if (enemy)
+            return true;
+        else
+            return false;
+    }
+
     // <menus>
     private void TogglePauseMenu()
     {
