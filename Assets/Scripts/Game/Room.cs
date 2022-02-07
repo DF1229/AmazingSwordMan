@@ -25,7 +25,6 @@ public class Room : MonoBehaviour
 
     public void nextWave()
     {
-
         try
         {
             waves[currWave].Activate();

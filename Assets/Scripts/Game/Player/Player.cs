@@ -137,13 +137,26 @@ public class Player : MonoBehaviour
         if (healthPoints <= 0f)
         {
             animator.SetTrigger("Death");
-            Invoke(nameof(GameManager.Instance.ShowDeathMenu), 2f);
+            GameManager.Instance.dead = true;
+            Invoke(nameof(ShowDeathMenu), 1f);
         }
+    }
+    
+    private void ShowDeathMenu()
+    {
+        GameManager.Instance.ShowDeathMenu();
     }
 
     public void AddScore(int input)
     {
         score += input;
+        scoreText.text = score.ToString();
+    }
+
+    public void Reset()
+    {
+        GameManager.Instance.dead = false;
+        score = 0;
         scoreText.text = score.ToString();
     }
 }

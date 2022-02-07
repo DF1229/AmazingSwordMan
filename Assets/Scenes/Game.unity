@@ -3039,7 +3039,7 @@ PrefabInstance:
     - target: {fileID: 1743629697126472898, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1052501170}
     - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: aiPath
       value: 
@@ -3056,6 +3056,10 @@ PrefabInstance:
       propertyPath: currRoom
       value: 
       objectReference: {fileID: 709939486}
+    - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
+      propertyPath: attackAnimDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: defaultPosition.x
       value: -3.4
@@ -3733,7 +3737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasEnemies: 1
-  infiniteWaves: 1
+  infiniteWaves: 0
   waves:
   - {fileID: 2122001255}
   - {fileID: 537535342}
@@ -8955,7 +8959,7 @@ PrefabInstance:
     - target: {fileID: 1743629697126472898, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1052501170}
     - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: aiPath
       value: 
@@ -8972,6 +8976,10 @@ PrefabInstance:
       propertyPath: currRoom
       value: 
       objectReference: {fileID: 709939486}
+    - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
+      propertyPath: attackAnimDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: defaultPosition.x
       value: -7.31
@@ -9791,7 +9799,7 @@ PrefabInstance:
     - target: {fileID: 1743629697126472898, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1052501170}
     - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: aiPath
       value: 
@@ -9808,6 +9816,10 @@ PrefabInstance:
       propertyPath: currRoom
       value: 
       objectReference: {fileID: 709939486}
+    - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
+      propertyPath: attackAnimDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: defaultPosition.x
       value: -7.37
@@ -10071,7 +10083,7 @@ PrefabInstance:
     - target: {fileID: 1743629697126472898, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1052501170}
     - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: aiPath
       value: 
@@ -10088,6 +10100,10 @@ PrefabInstance:
       propertyPath: currRoom
       value: 
       objectReference: {fileID: 709939486}
+    - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
+      propertyPath: attackAnimDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: defaultPosition.x
       value: -3.4
@@ -11587,7 +11603,9 @@ MonoBehaviour:
   howToMenu: {fileID: 1964951022}
   deathMenu: {fileID: 1404951993}
   quitMenu: {fileID: 1569077206}
+  player: {fileID: 1052501171}
   paused: 0
+  dead: 0
 --- !u!4 &740581734
 Transform:
   m_ObjectHideFlags: 0
@@ -11629,6 +11647,10 @@ PrefabInstance:
       propertyPath: currRoom
       value: 
       objectReference: {fileID: 709939486}
+    - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
+      propertyPath: attackAnimDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: defaultPosition.x
       value: -2.11
@@ -17497,6 +17519,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 709939486}
     - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
+      propertyPath: attackAnimDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: defaultPosition.x
       value: -10.1
       objectReference: {fileID: 0}
@@ -19381,7 +19407,7 @@ PrefabInstance:
     - target: {fileID: 1743629697126472898, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1052501170}
     - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: aiPath
       value: 
@@ -19398,6 +19424,10 @@ PrefabInstance:
       propertyPath: currRoom
       value: 
       objectReference: {fileID: 709939486}
+    - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
+      propertyPath: attackAnimDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: defaultPosition.x
       value: 0.64
@@ -27066,6 +27096,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 709939486}
     - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
+      propertyPath: attackAnimDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: defaultPosition.x
       value: -6.07
       objectReference: {fileID: 0}
@@ -31072,7 +31106,7 @@ PrefabInstance:
     - target: {fileID: 1743629697126472898, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1052501170}
     - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: aiPath
       value: 
@@ -31089,6 +31123,10 @@ PrefabInstance:
       propertyPath: currRoom
       value: 
       objectReference: {fileID: 709939486}
+    - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
+      propertyPath: attackAnimDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: defaultPosition.x
       value: -8.35
@@ -31230,6 +31268,10 @@ PrefabInstance:
       propertyPath: currRoom
       value: 
       objectReference: {fileID: 709939486}
+    - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
+      propertyPath: attackAnimDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: defaultPosition.x
       value: -8.35
@@ -33466,6 +33508,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 709939486}
     - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
+      propertyPath: attackAnimDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: defaultPosition.x
       value: -10.1
       objectReference: {fileID: 0}
@@ -33753,7 +33799,7 @@ PrefabInstance:
     - target: {fileID: 1743629697126472898, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1052501170}
     - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: aiPath
       value: 
@@ -33770,6 +33816,10 @@ PrefabInstance:
       propertyPath: currRoom
       value: 
       objectReference: {fileID: 709939486}
+    - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
+      propertyPath: attackAnimDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: defaultPosition.x
       value: 0.64
@@ -38114,6 +38164,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 709939486}
     - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
+      propertyPath: attackAnimDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1743629697126472899, guid: bb98df8aec72c114d81471afc70bc97a, type: 3}
       propertyPath: defaultPosition.x
       value: -6.07
       objectReference: {fileID: 0}
@@ -39944,6 +39998,10 @@ PrefabInstance:
       propertyPath: currRoom
       value: 
       objectReference: {fileID: 191869740}
+    - target: {fileID: 4081612696764696541, guid: a210730117119804c8a388e0f3f4352e, type: 3}
+      propertyPath: attackAnimDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4081612696764696541, guid: a210730117119804c8a388e0f3f4352e, type: 3}
       propertyPath: defaultPosition.x
       value: -1.098

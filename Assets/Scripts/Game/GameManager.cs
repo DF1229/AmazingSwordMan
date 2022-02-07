@@ -9,9 +9,11 @@ public class GameManager : MonoBehaviour
     public GameObject howToMenu;
     public GameObject deathMenu;
     public GameObject quitMenu;
+    public Player player;
 
     // Set in script
-    public bool paused = false;
+    [HideInInspector] public bool paused = false;
+    [HideInInspector] public bool dead = false;
 
     // GameManager singleton
     private static GameManager _instance;
@@ -37,13 +39,37 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void TogglePause()
+    {
+        if (paused)
+        {
+            paused = false;
+            Time.timeScale = 1f;
+            TogglePauseMenu();
+        } else
+        {
+            paused = true;
+            Time.timeScale = 0f;
+            TogglePauseMenu(); 
+        }
+    }
+
+    public void Reset()
+    {
+        paused = false;
+        Time.timeScale = 1f;
+        player.Reset();
+    }
+
     // <menus>
     private void TogglePauseMenu()
     {
         if (paused)
-            pauseMenu.SetActive(false); 
-        else
+        {
             pauseMenu.SetActive(true);
+        }
+        else
+            pauseMenu.SetActive(false);
     }
 
     public void ToggleHowToMenu()
@@ -61,24 +87,24 @@ public class GameManager : MonoBehaviour
 
     public void ToggleQuitMenu()
     {
-        if (quitMenu.activeSelf)
+        if (dead)
         {
-            quitMenu.SetActive(false);
-            pauseMenu.SetActive(true);
-        } else if (!quitMenu.activeSelf)
+            if (deathMenu.activeSelf)
+                deathMenu.SetActive(false);
+            else
+                deathMenu.SetActive(true);
+        } else
         {
-            pauseMenu.SetActive(false);
-            quitMenu.SetActive(true);
-        } 
-        if (deathMenu.activeSelf)
-        {
-            deathMenu.SetActive(false);
-            pauseMenu.SetActive(true);
-        } else if (!deathMenu.activeSelf)
-        {
-            pauseMenu.SetActive(false);
-            deathMenu.SetActive(true);
+            if (pauseMenu.activeSelf)
+                pauseMenu.SetActive(false);
+            else
+                pauseMenu.SetActive(true);
         }
+
+        if (quitMenu.activeSelf)
+            quitMenu.SetActive(false);
+        else
+            quitMenu.SetActive(true);
     }
 
     public void ShowDeathMenu()

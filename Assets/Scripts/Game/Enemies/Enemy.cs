@@ -19,10 +19,9 @@ public class Enemy : MonoBehaviour
     public float attackRange;
     public float attackDamage;
     public float attackCooldown;
+    [SerializeField] protected float attackAnimDelay;
 
     private Animator animator;
-    private float previousXPosition = 0f;
-    private float xDirection = 0f;
 
     private void Awake()
     {
@@ -36,7 +35,10 @@ public class Enemy : MonoBehaviour
         // Calculate distance to target, and attack if in range
         float dtt = Vector3.Distance(player.transform.position, this.transform.position);
         if (dtt <= attackRange && attackCooldown <= 0f)
-            Attack();
+        {
+            animator.SetTrigger("Attack");
+            Invoke(nameof(Attack), attackAnimDelay);
+        }
 
         if (aiPath.desiredVelocity != Vector3.zero)
             animator.SetInteger("AnimState", 1);
@@ -48,7 +50,6 @@ public class Enemy : MonoBehaviour
 
     private void Attack()
     {
-        animator.SetTrigger("Attack");
         Vector2 origin = new Vector2(this.transform.position.x, this.transform.position.y);
         Vector2 direction = this.player.transform.position - this.transform.position;
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, attackRange, playerLayer);
@@ -74,6 +75,7 @@ public class Enemy : MonoBehaviour
             Reset();
 
             List<Enemy> activeEnemies = currRoom.GetActiveEnemies();
+            Debug.LogWarning("Enemies found: " + activeEnemies.Count);
             if (activeEnemies.Count == 0)
                 currRoom.nextWave();
         } else if (healthPoints >= 1)
