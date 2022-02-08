@@ -37,7 +37,10 @@ public class Room : MonoBehaviour
             if (!infiniteWaves)
                 Finished();
             else
+            {
+                if (!finished) Finished();
                 Reset();
+            }
         } finally
         {
             currWave++;
