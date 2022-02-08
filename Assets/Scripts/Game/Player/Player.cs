@@ -138,7 +138,7 @@ public class Player : MonoBehaviour
         {
             animator.SetTrigger("Death");
             GameManager.Instance.dead = true;
-            Invoke(nameof(ShowDeathMenu), 1f);
+            Invoke(nameof(ShowDeathMenu), 0.75f);
         }
     }
     

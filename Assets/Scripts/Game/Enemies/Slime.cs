@@ -6,9 +6,9 @@ public class Slime : Enemy
 {
     private void OnEnable()
     {
-        pointsWorth = 5;
+        pointsWorth = 10;
         healthPoints = 50f;
-        attackRange = 1f;
+        attackRange = 1.25f;
         attackDamage = 2.5f;
         attackCooldown = 1f;
     }

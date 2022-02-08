@@ -39,6 +39,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void TogglePlainPause()
+    {
+        if (paused)
+        {
+            paused = false;
+            Time.timeScale = 1f;
+        } else
+        {
+            paused = true;
+            Time.timeScale = 0f;
+        }
+    }
+
     public void TogglePause()
     {
         if (paused)
@@ -118,7 +131,7 @@ public class GameManager : MonoBehaviour
 
     public void ShowDeathMenu()
     {
-        TogglePause();
+        TogglePlainPause();
         if (!deathMenu.activeSelf)
             deathMenu.SetActive(true);
     }
