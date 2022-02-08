@@ -7,7 +7,7 @@ public class Room : MonoBehaviour
     public bool hasEnemies = true;
     public bool infiniteWaves = false;
 
-    private int currWave = 0;
+    private int currWave;
     public Wave[] waves;
 
     public bool finished = false;
@@ -31,7 +31,6 @@ public class Room : MonoBehaviour
         try
         {
             waves[currWave].Activate();
-            currWave++;
         }
         catch (IndexOutOfRangeException)
         {
@@ -39,6 +38,9 @@ public class Room : MonoBehaviour
                 Finished();
             else
                 Reset();
+        } finally
+        {
+            currWave++;
         }
     }
 
