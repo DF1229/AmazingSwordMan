@@ -1,5 +1,6 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using System;
 
 public class MenuManager : MonoBehaviour
 {
@@ -9,19 +10,22 @@ public class MenuManager : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        //GameManager.Instance.Reset();
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.Reset();
+        }
     }
 
     public void ToggleHowToMenu()
     {
         if (howToMenu.activeSelf)
         {
-            mainMenu.SetActive(false);
-            howToMenu.SetActive(true);
+            mainMenu.SetActive(true);
+            howToMenu.SetActive(false);
         } else
         {
-            howToMenu.SetActive(false);
-            mainMenu.SetActive(true);
+            howToMenu.SetActive(true);
+            mainMenu.SetActive(false);
         }
     }
 
