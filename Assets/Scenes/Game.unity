@@ -386,7 +386,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57db1a8d3f5a8a345b6fff07c5712f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints: []
+  spawnPoints:
+  - {fileID: 153216456}
 --- !u!1 &105837937
 GameObject:
   m_ObjectHideFlags: 0
@@ -6954,7 +6955,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57db1a8d3f5a8a345b6fff07c5712f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints: []
+  spawnPoints:
+  - {fileID: 71149642}
+  - {fileID: 1857081501}
+  - {fileID: 1830374382}
+  - {fileID: 2049054369}
 --- !u!1 &325949137
 GameObject:
   m_ObjectHideFlags: 0
@@ -11234,7 +11239,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57db1a8d3f5a8a345b6fff07c5712f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints: []
+  spawnPoints:
+  - {fileID: 1772744879}
+  - {fileID: 563026612}
+  - {fileID: 227485607}
+  - {fileID: 1072206295}
+  - {fileID: 162018961}
+  - {fileID: 873453959}
 --- !u!1 &681360426
 GameObject:
   m_ObjectHideFlags: 0
@@ -26885,7 +26896,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57db1a8d3f5a8a345b6fff07c5712f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints: []
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 153216456}
 --- !u!1001 &991994616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32123,7 +32139,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57db1a8d3f5a8a345b6fff07c5712f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints: []
+  spawnPoints:
+  - {fileID: 1772744879}
+  - {fileID: 563026612}
+  - {fileID: 227485607}
+  - {fileID: 1749540871}
 --- !u!1 &1404951993
 GameObject:
   m_ObjectHideFlags: 0
@@ -36045,7 +36065,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57db1a8d3f5a8a345b6fff07c5712f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints: []
+  spawnPoints:
+  - {fileID: 1072206295}
+  - {fileID: 162018961}
+  - {fileID: 873453959}
+  - {fileID: 42991221}
 --- !u!1 &1772744878
 GameObject:
   m_ObjectHideFlags: 0
@@ -40712,10 +40736,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints:
   - {fileID: 2014749723}
-  - {fileID: 1772744879}
   - {fileID: 2005434280}
   - {fileID: 498129449}
-  - {fileID: 1072206295}
   - {fileID: 1682208533}
 --- !u!1 &2005434279
 GameObject:
