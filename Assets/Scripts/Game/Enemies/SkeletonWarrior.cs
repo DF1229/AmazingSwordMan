@@ -4,7 +4,7 @@ using System.Collections;
 public class SkeletonWarrior : Enemy {
     private void OnEnable()
     {
-        pointsWorth = 50;
+        pointsWorth = 75;
         healthPoints = 250f;
         attackRange = 3f;
         attackDamage = 10;
